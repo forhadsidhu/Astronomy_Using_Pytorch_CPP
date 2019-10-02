@@ -1,5 +1,4 @@
 #pragma once
-
 #include<iostream>
 #include<string>
 #include<vector>
@@ -7,54 +6,67 @@
 #include<initializer_list>
 
 
+
 class DataSetMetaData {
 
 	friend class DataSet;
-private:
-	float sepal_length;
-	float sepal_width;
-	float petal_length;
-	float petal_width;
-	std::string species;
+
+
 };
+
+
 
 class DataSet {
 
+	
+
 public:
 
-	//read the given csv file and complete_x and y_
+	//read the given csv file and complete x_ and y_
+
 	void ReadCSVFile(std::string file_name);
+	
 
+	//Construct a dataset from the given csv file path
 
-	//Construct a data set from the given csv file path
 	DataSet(std::string file_name) {
 		ReadCSVFile(file_name);
+
+		//std::cout << "YES COME" << std::endl;
 	}
 
-	///getters
+	//getters
 
-	std::vector<float>& x1() { return x1_; }
-	std::vector<float>& x2() { return x2_; }
-	std::vector<float>& x3() { return x3_; }
-	std::vector<float>& x4() { return x4_;}
-	std::vector<float& y() { return y_; }
+	std::vector<float>mean() { return mean_; };
+	std::vector<float>stdev() { return stdev_; };
+	std::vector<float>kurtosis() { return kurtosis_; };
+	std::vector<float>skewness() { return skewness_; };
+	std::vector<float>snr() { return snr_; };
+	std::vector<float>dmsnr() { return dmsnr_; };
+	std::vector<float>kurtosissnr() { return kurtosissnr_; };
+	std::vector<float>skewsnr() { return skewsnr_; };
+	std::vector<float>clas() { return class_; };
+
+	
 
 
+	//convert one csv line to a vector of float
 
-	///convert one csv line to a vector of float
+	std::vector<float> ReadCSVLine(std::string line);
 
-	std::vector<float>ReadCSVLine(std::string line);
-	///normalize a human input using the data set metadata
-	std::initializer_list<float>input(float petal_length,float peta_width,float sepal_length,float sepal_width);
-
-	std::string output(std::vector<float>one_hot_encoding_species);
+	
 
 private:
 	DataSetMetaData data_set_metadata;
-	std::vector<float>x1_;
-	std::vector<float>x2_;
-	std::vector < float>x3_;
-	std::vector<float>x4_;
-	std::vector<float>y_;
-};
+	std::vector<float>mean_;
+	std::vector<float>stdev_;
+	std::vector<float>kurtosis_;
+	std::vector<float>skewness_;
+	std::vector<float>snr_;
+	std::vector<float>dmsnr_;
+	std::vector<float>kurtosissnr_;
+	std::vector<float>skewsnr_;
 
+	std::vector<float>class_;
+
+};
